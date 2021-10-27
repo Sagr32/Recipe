@@ -1,4 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:recipe/features/recipe/domain/entities/extended_ingredient.dart';
+
+import 'analyzed_instruction.dart';
 
 /// Recipe entity that extends Equatable
 
@@ -48,7 +51,7 @@ class Recipe extends Equatable {
   final bool? veryPopular;
 
   /// Recipe Ingredients
-  final List<String>? extendedIngredients;
+  final List<ExtendedIngredient>? extendedIngredients;
 
   /// Recipe id
   final int? id;
@@ -81,7 +84,7 @@ class Recipe extends Equatable {
   final String? instructions;
 
   /// Recipe detailed instruction with steps
-  final List<String>? analyzedInstructions;
+  final List<AnalyzedInstruction>? analyzedInstructions;
 
   @override
   List<Object?> get props {
