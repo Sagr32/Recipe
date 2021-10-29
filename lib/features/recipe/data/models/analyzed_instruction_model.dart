@@ -1,5 +1,5 @@
-import 'package:recipe/features/recipe/data/models/recipe_step_model.dart';
-import 'package:recipe/features/recipe/domain/entities/analyzed_instruction.dart';
+import 'recipe_step_model.dart';
+import '../../domain/entities/analyzed_instruction.dart';
 
 /// [AnalyzedInstructionsModel] that extends [AnalyzedInstructions] Entity
 

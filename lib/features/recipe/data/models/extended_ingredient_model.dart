@@ -1,4 +1,4 @@
-import 'package:recipe/features/recipe/domain/entities/extended_ingredient.dart';
+import '../../domain/entities/extended_ingredient.dart';
 
 /// ExtendedIngredient model that extends [ExtendedIngredient] Entity
 class ExtendedIngredientModel extends ExtendedIngredient {

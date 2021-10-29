@@ -6,13 +6,13 @@ import '../../../../test_constants.dart';
 
 void main() {
   final Map<String, dynamic> jsonMap = {
-    "analyzedInstructions": [
+    'analyzedInstructions': [
       {
-        "name": "Cook pasta in a large pot of boiling water until al dente.",
+        'name': 'Cook pasta in a large pot of boiling water until al dente.',
         'steps': [
           {
             'step':
-                "Cook pasta in a large pot of boiling water until al dente.",
+                'Cook pasta in a large pot of boiling water until al dente.',
           }
         ],
       }
@@ -31,19 +31,19 @@ void main() {
     'extendedIngredients': [
       {
         'id': 1243,
-        'originalString': "1 1/4 cups Non-Fat Milk",
+        'originalString': '1 1/4 cups Non-Fat Milk',
       }
     ],
     'glutenFree': false,
     'id': 214512,
-    'image': "https://spoonacular.com/recipeImages/654959-556x370.jpg",
+    'image': 'https://spoonacular.com/recipeImages/654959-556x370.jpg',
     'instructions':
         'Cook pasta in a large pot of boiling water until al dente. ',
     'readyInMinutes': 45,
     'servings': 2,
     'summary':
         'Pasta With Tuna might be just the main course you are searching for.',
-    'title': "Pasta With Tuna",
+    'title': 'Pasta With Tuna',
     'vegan': false,
     'vegetarian': false,
     'veryHealthy': false,

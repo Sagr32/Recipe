@@ -7,6 +7,8 @@ import 'package:recipe/features/recipe/domain/entities/extended_ingredient.dart'
 import 'package:recipe/features/recipe/domain/entities/recipe.dart';
 import 'package:recipe/features/recipe/domain/entities/recipe_step.dart';
 
+const tRecipeId = 125135;
+const tQuery = 'Burger';
 const Recipe tRecipe = Recipe(
     analyzedInstructions: [
       AnalyzedInstruction(
@@ -134,8 +136,6 @@ const List<Recipe> tRecipesList = [
       veryPopular: true)
 ];
 
-const tRecipeId = 125135;
-const tQuery = 'Burger';
 const tAnalyzedInstructionsList = [
   AnalyzedInstruction(
     name: "Cook pasta in a large pot of boiling water until al dente.",
@@ -150,86 +150,48 @@ const tAnalyzedInstructionsList = [
 
 const List<RecipeModel> tRecipeModelList = [
   RecipeModel(
-      analyzedInstructions: [
-        AnalyzedInstructionModel(
-          name: "Cook pasta in a large pot of boiling water until al dente.",
-          recipeSteps: [
-            RecipeStepModel(
-              recipeStep:
-                  "Cook pasta in a large pot of boiling water until al dente.",
-            ),
-          ],
-        )
-      ],
-      cheap: false,
-      cuisines: [
-        'Italian',
-      ],
-      dairyFree: false,
-      diets: [
-        'vegan',
-      ],
-      dishTypes: [
-        'lunch',
-      ],
-      extendedIngredients: [
-        ExtendedIngredientModel(
-          id: 1243,
-          originalString: "1 1/4 cups Non-Fat Milk",
-        )
-      ],
-      glutenFree: false,
-      id: 214512,
-      image: "https://spoonacular.com/recipeImages/654959-556x370.jpg",
-      instructions:
-          'Cook pasta in a large pot of boiling water until al dente. ',
-      readyInMinutes: 45,
-      servings: 2,
-      summary:
-          'Pasta With Tuna might be just the main course you are searching for.',
-      title: "Pasta With Tuna",
-      vegan: false,
-      vegetarian: false,
-      veryHealthy: false,
-      veryPopular: true),
-  RecipeModel(
-      analyzedInstructions: [
-        AnalyzedInstructionModel(
-          name: "Cook pasta in a large pot of boiling water until al dente.",
-          recipeSteps: [],
-        )
-      ],
-      cheap: false,
-      cuisines: [
-        'Italian',
-      ],
-      dairyFree: false,
-      diets: [
-        'vegan',
-      ],
-      dishTypes: [
-        'lunch',
-      ],
-      extendedIngredients: [
-        ExtendedIngredientModel(
-          id: 1243,
-          originalString: "1 1/4 cups Non-Fat Milk",
-        )
-      ],
-      glutenFree: false,
-      id: 214512,
-      image: "https://spoonacular.com/recipeImages/654959-556x370.jpg",
-      instructions:
-          'Cook pasta in a large pot of boiling water until al dente. ',
-      readyInMinutes: 45,
-      servings: 2,
-      summary:
-          'Pasta With Tuna might be just the main course you are searching for.',
-      title: "Pasta With Tuna",
-      vegan: false,
-      vegetarian: false,
-      veryHealthy: false,
-      veryPopular: true)
+    analyzedInstructions: [
+      AnalyzedInstructionModel(
+        name: "Cook pasta in a large pot of boiling water until al dente.",
+        recipeSteps: [
+          RecipeStepModel(
+            recipeStep:
+                "Cook pasta in a large pot of boiling water until al dente.",
+          ),
+        ],
+      )
+    ],
+    cheap: false,
+    cuisines: [
+      'Italian',
+    ],
+    dairyFree: false,
+    diets: [
+      'vegan',
+    ],
+    dishTypes: [
+      'lunch',
+    ],
+    extendedIngredients: [
+      ExtendedIngredientModel(
+        id: 1243,
+        originalString: "1 1/4 cups Non-Fat Milk",
+      )
+    ],
+    glutenFree: false,
+    id: 214512,
+    image: "https://spoonacular.com/recipeImages/654959-556x370.jpg",
+    instructions: 'Cook pasta in a large pot of boiling water until al dente. ',
+    readyInMinutes: 45,
+    servings: 2,
+    summary:
+        'Pasta With Tuna might be just the main course you are searching for.',
+    title: "Pasta With Tuna",
+    vegan: false,
+    vegetarian: false,
+    veryHealthy: false,
+    veryPopular: true,
+  ),
 ];
 
 const tAnalyzedInstructionModel = AnalyzedInstructionModel(

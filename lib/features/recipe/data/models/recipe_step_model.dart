@@ -1,4 +1,4 @@
-import 'package:recipe/features/recipe/domain/entities/recipe_step.dart';
+import '../../domain/entities/recipe_step.dart';
 
 /// step entity that holds analyzed steps
 class RecipeStepModel extends RecipeStep {

@@ -6,11 +6,19 @@ abstract class Failure extends Equatable {
   List<Object> get props => <Object>[];
 }
 
-/// General failures
+/// General failure
 class ServerFailure extends Failure {
   /// Constructor
   ServerFailure();
 
+  @override
+  List<Object> get props => <Object>[];
+}
+
+/// Custom Failure for no internet connection
+class ConnectionFailure extends Failure {
+  /// constructor
+  ConnectionFailure();
   @override
   List<Object> get props => <Object>[];
 }

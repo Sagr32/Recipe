@@ -1,7 +1,6 @@
-import 'package:recipe/features/recipe/data/models/analyzed_instruction_model.dart';
-import 'package:recipe/features/recipe/data/models/extended_ingredient_model.dart';
-
-import 'package:recipe/features/recipe/domain/entities/recipe.dart';
+import '../../domain/entities/recipe.dart';
+import 'analyzed_instruction_model.dart';
+import 'extended_ingredient_model.dart';
 
 /// Recipe Model that extends Recipe Entity
 class RecipeModel extends Recipe {
@@ -63,9 +62,9 @@ class RecipeModel extends Recipe {
         readyInMinutes: json['readyInMinutes'],
         servings: json['servings'],
         summary: json['summary'],
-        cuisines: json["cuisines"].cast<String>(),
+        cuisines: json['cuisines'].cast<String>(),
         diets: json['diets'].cast<String>(),
-        dishTypes: json["dishTypes"].cast<String>(),
+        dishTypes: json['dishTypes'].cast<String>(),
         instructions: json['instructions'],
         extendedIngredients: (json['extendedIngredients'] as List<dynamic>?)
             ?.map((e) =>

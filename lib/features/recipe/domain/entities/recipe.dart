@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:recipe/features/recipe/domain/entities/extended_ingredient.dart';
 
 import 'analyzed_instruction.dart';
+import 'extended_ingredient.dart';
 
 /// Recipe entity that extends Equatable
 

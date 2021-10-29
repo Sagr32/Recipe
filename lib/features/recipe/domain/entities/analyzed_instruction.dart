@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:recipe/features/recipe/domain/entities/recipe_step.dart';
+
+import 'recipe_step.dart';
 
 /// Analyzed instructions step by step
 class AnalyzedInstruction extends Equatable {
