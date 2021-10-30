@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:recipe/core/constants/constants.dart';
 import 'package:recipe/core/error/exception.dart';
 import 'package:recipe/core/error/failure.dart';
 import 'package:recipe/core/network/network_info.dart';
@@ -69,13 +70,13 @@ void main() {
         () async {
           // arrange
           when(() => mockRemoteDataSource.getRandomRecipes())
-              .thenThrow(ServerException());
+              .thenThrow(ServerException(errorMessage: kErrorMessage));
 
           // act
           final result = await repositoryImpl.getRandomRecipes();
 
           // assert
-          expect(result, Left(ServerFailure()));
+          expect(result, Left(ServerFailure(errorMessage: kErrorMessage)));
         },
       );
     });
@@ -85,7 +86,7 @@ void main() {
         () async {
           // arrange
           when(() => mockRemoteDataSource.getRandomRecipes())
-              .thenThrow(ServerException());
+              .thenThrow(ServerException(errorMessage: kNoConnectionError));
 
           // act
           final result = await repositoryImpl.getRandomRecipes();
@@ -120,12 +121,12 @@ void main() {
             // arrange
             when(() =>
                     mockRemoteDataSource.getSimilarRecipes(recipeId: tRecipeId))
-                .thenThrow(ServerException());
+                .thenThrow(ServerException(errorMessage: kErrorMessage));
             // act
             final result =
                 await repositoryImpl.getSimilarRecipes(recipeId: tRecipeId);
             // assert
-            expect(result, Left(ServerFailure()));
+            expect(result, Left(ServerFailure(errorMessage: kErrorMessage)));
           },
         );
       },
@@ -137,7 +138,7 @@ void main() {
           // arrange
           when(() =>
                   mockRemoteDataSource.getSimilarRecipes(recipeId: tRecipeId))
-              .thenThrow(ServerException());
+              .thenThrow(ServerException(errorMessage: kNoConnectionError));
           // act
           final result =
               await repositoryImpl.getSimilarRecipes(recipeId: tRecipeId);
@@ -171,11 +172,11 @@ void main() {
             () async {
               // arrange
               when(() => mockRemoteDataSource.searchRecipes(query: tQuery))
-                  .thenThrow(ServerException());
+                  .thenThrow(ServerException(errorMessage: kErrorMessage));
               // act
               final result = await repositoryImpl.searchRecipes(query: tQuery);
               // assert
-              expect(result, Left(ServerFailure()));
+              expect(result, Left(ServerFailure(errorMessage: kErrorMessage)));
             },
           );
         },
@@ -186,7 +187,7 @@ void main() {
           () async {
             // arrange
             when(() => mockRemoteDataSource.searchRecipes(query: tQuery))
-                .thenThrow(ServerException());
+                .thenThrow(ServerException(errorMessage: kNoConnectionError));
             // act
             final result = await repositoryImpl.searchRecipes(query: tQuery);
             // assert
@@ -218,12 +219,18 @@ void main() {
           () async {
             // arrange
             when(() => mockRemoteDataSource.getRecipeInformation(
-                recipeId: tRecipeId)).thenThrow(ServerException());
+                    recipeId: tRecipeId))
+                .thenThrow(ServerException(errorMessage: kErrorMessage));
             // act
             final result =
                 await repositoryImpl.getRecipeInformation(recipeId: tRecipeId);
             // assert
-            expect(result, Left(ServerFailure()));
+            expect(
+              result,
+              Left(
+                ServerFailure(errorMessage: kErrorMessage),
+              ),
+            );
           },
         );
       },
@@ -234,7 +241,8 @@ void main() {
         () async {
           // arrange
           when(() => mockRemoteDataSource.getRecipeInformation(
-              recipeId: tRecipeId)).thenThrow(ServerException());
+                  recipeId: tRecipeId))
+              .thenThrow(ServerException(errorMessage: kNoConnectionError));
           // act
           final result =
               await repositoryImpl.getRecipeInformation(recipeId: tRecipeId);

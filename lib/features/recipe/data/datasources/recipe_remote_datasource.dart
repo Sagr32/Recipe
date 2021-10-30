@@ -83,10 +83,10 @@ class RecipeRemoteDataSourceImpl implements RecipeRemoteDataSource {
       if (response.statusCode == 200) {
         return RecipeModel.fromJson(json.decode(response.body));
       } else {
-        throw ServerException();
+        throw ServerException(errorMessage: response.body);
       }
-    } on Exception catch (_) {
-      throw ServerException();
+    } on Exception catch (error) {
+      throw ServerException(errorMessage: error.toString());
     }
   }
 
@@ -116,10 +116,10 @@ class RecipeRemoteDataSourceImpl implements RecipeRemoteDataSource {
           return list;
         }
       } else {
-        throw ServerException();
+        throw ServerException(errorMessage: response.body);
       }
-    } on Exception catch (_) {
-      throw ServerException();
+    } on Exception catch (error) {
+      throw ServerException(errorMessage: error.toString());
     }
   }
 }

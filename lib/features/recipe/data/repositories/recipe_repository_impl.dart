@@ -51,9 +51,9 @@ class RecipeRepositoryImpl implements RecipeRepository {
             .getRecipeInformation(recipeId: recipeId);
 
         return Right(remoteRecipes);
-      } on ServerException {
+      } on ServerException catch (error) {
         return Left(
-          ServerFailure(),
+          ServerFailure(errorMessage: error.errorMessage.toString()),
         );
       }
     } else {
@@ -73,9 +73,9 @@ class RecipeRepositoryImpl implements RecipeRepository {
         final List<Recipe> remoteRecipes = await chooserFunc();
 
         return Right(remoteRecipes);
-      } on ServerException {
+      } on ServerException catch (error) {
         return Left(
-          ServerFailure(),
+          ServerFailure(errorMessage: error.errorMessage.toString()),
         );
       }
     } else {
