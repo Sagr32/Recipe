@@ -16,7 +16,7 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
       emit(RecipeInfoLoading());
 
       final Either<Failure, Recipe> failureOrRecipeInfo =
-          await usecase(Params(recipeId: event.recipeId));
+          await usecase(IntParams(recipeId: event.recipeId));
 
       failureOrRecipeInfo.fold(
         (Failure failure) => emit(

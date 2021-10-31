@@ -25,7 +25,7 @@ void main() {
       when(() => mockRecipeReposity.getRecipeInformation(recipeId: tRecipeId))
           .thenAnswer((invocation) async => const Right(tRecipe));
       // act
-      final result = await usecase(Params(recipeId: tRecipeId));
+      final result = await usecase(IntParams(recipeId: tRecipeId));
       // assert
       verify(
           () => mockRecipeReposity.getRecipeInformation(recipeId: tRecipeId));

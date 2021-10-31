@@ -16,10 +16,10 @@ class SearchRecipesBloc extends Bloc<SearchRecipesEvent, SearchRecipesState> {
     on<GetRecipesForSearchEvent>((event, emit) async {
       emit(SearchRecipesLoading());
 
-      final Either<Failure, List<Recipe>> failureOrRecipeInfo =
-          await usecase(Params(query: event.query));
+      final Either<Failure, List<Recipe>> failureOrRecipes =
+          await usecase(StringParams(query: event.query));
 
-      failureOrRecipeInfo.fold(
+      failureOrRecipes.fold(
         (Failure failure) => emit(
           SearchRecipesError(errorMessage: mapFailureToMessage(failure)),
         ),

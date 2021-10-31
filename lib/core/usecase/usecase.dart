@@ -16,16 +16,30 @@ class NoParams extends Equatable {
   List<Object?> get props => <Object>[];
 }
 
-/// Custom parameter to pass in use case
-class Params extends Equatable {
+/// Custom String parameter to pass in use case
+class StringParams extends Equatable {
   /// constructor
-  const Params({this.query, this.recipeId});
+  const StringParams({
+    this.query,
+  });
 
   /// query search word
   final String? query;
 
-  /// recipe id
-  final int? recipeId;
   @override
-  List<Object?> get props => <Object?>[query, recipeId];
+  List<Object?> get props => <Object?>[
+        query,
+      ];
+}
+
+/// Custom Int parameter to pass in use case
+class IntParams extends Equatable {
+  /// constructor
+  const IntParams({required this.recipeId});
+
+  /// target recipe id
+  final int? recipeId;
+
+  @override
+  List<Object?> get props => <Object?>[recipeId];
 }

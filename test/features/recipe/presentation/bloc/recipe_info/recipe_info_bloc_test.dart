@@ -37,13 +37,13 @@ void main() {
         'should call [GetRecipeInformation] use case',
         () async {
           // arrange
-          when(() => mockUsecase(Params(recipeId: tRecipeId)))
+          when(() => mockUsecase(IntParams(recipeId: tRecipeId)))
               .thenAnswer((invocation) async => Right(tRecipe));
           // act
           bloc.add(GetRecipeInfoEvent(recipeId: tRecipeId));
-          await untilCalled(() => mockUsecase(Params(recipeId: tRecipeId)));
+          await untilCalled(() => mockUsecase(IntParams(recipeId: tRecipeId)));
           // assert
-          verify(() => mockUsecase(Params(recipeId: tRecipeId)));
+          verify(() => mockUsecase(IntParams(recipeId: tRecipeId)));
         },
       );
 
@@ -52,7 +52,7 @@ void main() {
          when calling usecase then call is successful''',
         // arange
         setUp: () {
-          when(() => mockUsecase(Params(recipeId: tRecipeId)))
+          when(() => mockUsecase(IntParams(recipeId: tRecipeId)))
               .thenAnswer((invocation) async => Right(tRecipe));
         },
         build: () => bloc,
@@ -64,14 +64,14 @@ void main() {
           RecipeInfoLoaded(recipe: tRecipe),
         ],
         verify: (_) =>
-            verify(() => mockUsecase(Params(recipeId: tRecipeId))).called(1),
+            verify(() => mockUsecase(IntParams(recipeId: tRecipeId))).called(1),
       );
       blocTest<RecipeInfoBloc, RecipeInfoState>(
         '''should emits [RecipeInfoLoading,RecipeInfoError]
          when  error occurs''',
         // arange
         setUp: () {
-          when(() => mockUsecase(Params(recipeId: tRecipeId))).thenAnswer(
+          when(() => mockUsecase(IntParams(recipeId: tRecipeId))).thenAnswer(
               (invocation) async =>
                   Left(ServerFailure(errorMessage: kErrorMessage)));
         },
@@ -84,14 +84,14 @@ void main() {
           const RecipeInfoError(errorMessage: kErrorMessage),
         ],
         verify: (_) =>
-            verify(() => mockUsecase(Params(recipeId: tRecipeId))).called(1),
+            verify(() => mockUsecase(IntParams(recipeId: tRecipeId))).called(1),
       );
       blocTest<RecipeInfoBloc, RecipeInfoState>(
         '''should emits [RecipeInfoLoading,RecipeInfoError]
          when  there is no internet connection''',
         // arange
         setUp: () {
-          when(() => mockUsecase(Params(recipeId: tRecipeId))).thenAnswer(
+          when(() => mockUsecase(IntParams(recipeId: tRecipeId))).thenAnswer(
             (invocation) async => Left(
               ConnectionFailure(),
             ),
@@ -106,7 +106,7 @@ void main() {
           const RecipeInfoError(errorMessage: kNoConnectionError),
         ],
         verify: (_) =>
-            verify(() => mockUsecase(Params(recipeId: tRecipeId))).called(1),
+            verify(() => mockUsecase(IntParams(recipeId: tRecipeId))).called(1),
       );
     },
   );

@@ -7,7 +7,7 @@ import '../repositories/recipe_repository.dart';
 
 /// get similar recipes use case
 
-class GetSimilarRecipes implements UseCase<List<Recipe>, Params> {
+class GetSimilarRecipes implements UseCase<List<Recipe>, IntParams> {
   /// constructor
   GetSimilarRecipes(this.recipeReposity);
   final RecipeRepository recipeReposity;

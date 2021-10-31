@@ -5,7 +5,7 @@ import '../../../../core/usecase/usecase.dart';
 import '../entities/recipe.dart';
 import '../repositories/recipe_repository.dart';
 
-class SearchRecipes implements UseCase<List<Recipe>, Params> {
+class SearchRecipes implements UseCase<List<Recipe>, StringParams> {
   SearchRecipes(this.recipeReposity);
   final RecipeRepository recipeReposity;
   @override

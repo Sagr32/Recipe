@@ -25,7 +25,7 @@ void main() {
       when(() => mockRecipeReposity.searchRecipes(query: tQuery))
           .thenAnswer((invocation) async => const Right(tRecipesList));
       // act
-      final result = await usecase(Params(query: tQuery));
+      final result = await usecase(StringParams(query: tQuery));
       // assert
       verify(() => mockRecipeReposity.searchRecipes(query: tQuery));
       expect(result, const Right(tRecipesList));

@@ -7,7 +7,7 @@ import '../repositories/recipe_repository.dart';
 
 /// get specific recipe information use case
 
-class GetRecipeInformation implements UseCase<Recipe, Params> {
+class GetRecipeInformation implements UseCase<Recipe, IntParams> {
   /// constructor
   GetRecipeInformation(this.recipeReposity);
 

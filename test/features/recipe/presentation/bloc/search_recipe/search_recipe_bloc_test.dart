@@ -38,13 +38,13 @@ void main() {
         'should call [SearchRecipes] use case',
         () async {
           // arrange
-          when(() => mockUsecase(Params(query: tQuery)))
+          when(() => mockUsecase(StringParams(query: tQuery)))
               .thenAnswer((invocation) async => Right(tRecipesList));
           // act
           bloc.add(GetRecipesForSearchEvent(query: tQuery));
-          await untilCalled(() => mockUsecase(Params(query: tQuery)));
+          await untilCalled(() => mockUsecase(StringParams(query: tQuery)));
           // assert
-          verify(() => mockUsecase(Params(query: tQuery)));
+          verify(() => mockUsecase(StringParams(query: tQuery)));
         },
       );
 
@@ -53,7 +53,7 @@ void main() {
          when calling usecase then call is successful''',
         // arange
         setUp: () {
-          when(() => mockUsecase(Params(query: tQuery)))
+          when(() => mockUsecase(StringParams(query: tQuery)))
               .thenAnswer((invocation) async => Right(tRecipesList));
         },
         build: () => bloc,
@@ -65,14 +65,14 @@ void main() {
           SearchRecipesLoaded(recipes: tRecipesList),
         ],
         verify: (_) =>
-            verify(() => mockUsecase(Params(query: tQuery))).called(1),
+            verify(() => mockUsecase(StringParams(query: tQuery))).called(1),
       );
       blocTest<SearchRecipesBloc, SearchRecipesState>(
         '''should emits [SearchRecipesLoading,SearchRecipesError]
          when  error occurs''',
         // arange
         setUp: () {
-          when(() => mockUsecase(Params(query: tQuery))).thenAnswer(
+          when(() => mockUsecase(StringParams(query: tQuery))).thenAnswer(
               (invocation) async =>
                   Left(ServerFailure(errorMessage: kErrorMessage)));
         },
@@ -85,14 +85,14 @@ void main() {
           const SearchRecipesError(errorMessage: kErrorMessage),
         ],
         verify: (_) =>
-            verify(() => mockUsecase(Params(query: tQuery))).called(1),
+            verify(() => mockUsecase(StringParams(query: tQuery))).called(1),
       );
       blocTest<SearchRecipesBloc, SearchRecipesState>(
         '''should emits [SearchRecipesLoading,SearchRecipesError]
          when  there is no internet connection''',
         // arange
         setUp: () {
-          when(() => mockUsecase(Params(query: tQuery))).thenAnswer(
+          when(() => mockUsecase(StringParams(query: tQuery))).thenAnswer(
             (invocation) async => Left(
               ConnectionFailure(),
             ),
@@ -107,7 +107,7 @@ void main() {
           const SearchRecipesError(errorMessage: kNoConnectionError),
         ],
         verify: (_) =>
-            verify(() => mockUsecase(Params(query: tQuery))).called(1),
+            verify(() => mockUsecase(StringParams(query: tQuery))).called(1),
       );
     },
   );
