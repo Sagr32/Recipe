@@ -10,10 +10,16 @@ abstract class RandomRecipesState extends Equatable {
 }
 
 /// Random Recipes Initial state
-class RandomRecipesInitial extends RandomRecipesState {}
+class RandomRecipesInitial extends RandomRecipesState {
+  @override
+  List<Object> get props => <Object>[];
+}
 
 /// Random Recipes Loading state
-class RandomRecipesLoading extends RandomRecipesState {}
+class RandomRecipesLoading extends RandomRecipesState {
+  @override
+  List<Object> get props => <Object>[];
+}
 
 /// Random Recipes Loaded state
 class RandomRecipesLoaded extends RandomRecipesState {

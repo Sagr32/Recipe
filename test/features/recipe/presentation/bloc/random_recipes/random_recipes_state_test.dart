@@ -10,25 +10,32 @@ void main() {
     'Random Recipes state',
     () {
       test(
-        '[Loading state] supports value comparison',
+        '[RandomRecipesLoading state] supports value comparison',
         () {
-          expect(RandomRecipesLoading(), RandomRecipesLoading());
+          expect(
+            RandomRecipesLoading(),
+            RandomRecipesLoading(),
+          );
         },
       );
       test(
-        '[Loaded state] supports value comparison',
+        '[RandomRecipesLoaded state] supports value comparison',
         () {
           final recipe = FakeRecipe();
           final list = [recipe];
-          expect(RandomRecipesLoaded(recipes: list),
-              RandomRecipesLoaded(recipes: list));
+          expect(
+            RandomRecipesLoaded(recipes: list),
+            RandomRecipesLoaded(recipes: list),
+          );
         },
       );
       test(
-        '[Error state] supports value comparison',
+        '[RandomRecipesError state] supports value comparison',
         () {
-          expect(RandomRecipesError(errorMessage: kErrorMessage),
-              RandomRecipesError(errorMessage: kErrorMessage));
+          expect(
+            RandomRecipesError(errorMessage: kErrorMessage),
+            RandomRecipesError(errorMessage: kErrorMessage),
+          );
         },
       );
     },
