@@ -46,7 +46,7 @@ class RecipeRemoteDataSourceImpl implements RecipeRemoteDataSource {
       endPoint: kRandomRecipesEndpoint,
       jsonKey: 'recipes',
       queryParameters: <String, dynamic>{
-        'api_key': kApiKey,
+        'apiKey': kApiKey,
       },
     );
   }
@@ -56,7 +56,7 @@ class RecipeRemoteDataSourceImpl implements RecipeRemoteDataSource {
     return _getRecipesFromUrl(
         endPoint: kSimilarRecipesEndpoint(recipeId),
         queryParameters: <String, dynamic>{
-          'api_key': kApiKey,
+          'apiKey': kApiKey,
         },
         jsonKey: '');
   }
@@ -66,7 +66,7 @@ class RecipeRemoteDataSourceImpl implements RecipeRemoteDataSource {
     return _getRecipesFromUrl(
         endPoint: kSearchRecipesEndpojnt,
         queryParameters: <String, dynamic>{
-          'api_key': kApiKey,
+          'apiKey': kApiKey,
           'query': '$query',
         },
         jsonKey: 'results');
@@ -74,7 +74,7 @@ class RecipeRemoteDataSourceImpl implements RecipeRemoteDataSource {
 
   @override
   Future<RecipeModel> getRecipeInformation({required int? recipeId}) async {
-    final Map<String, String> queryParameters = {'api_key': kApiKey};
+    final Map<String, String> queryParameters = {'apiKey': kApiKey};
     final Uri uri =
         Uri.https(kBaseUrl, kRecipeInfoEndpoint(recipeId), queryParameters);
 

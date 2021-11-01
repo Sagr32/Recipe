@@ -61,7 +61,7 @@ void main() {
   group(
     'Get Recipe Information',
     () {
-      final Map<String, String> queryParameters = {'api_key': kApiKey};
+      final Map<String, String> queryParameters = {'apiKey': kApiKey};
       final Uri uri =
           Uri.https(kBaseUrl, kRecipeInfoEndpoint(tRecipeId), queryParameters);
 
@@ -109,7 +109,7 @@ void main() {
   );
 
   group('Get Random Recipes', () {
-    final Map<String, String> queryParameters = {'api_key': kApiKey};
+    final Map<String, String> queryParameters = {'apiKey': kApiKey};
     final Uri uri =
         Uri.https(kBaseUrl, kRandomRecipesEndpoint, queryParameters);
     test(
@@ -152,7 +152,7 @@ void main() {
 
   group('Get Similar Recipe', () {
     final queryParameters = <String, dynamic>{
-      'api_key': kApiKey,
+      'apiKey': kApiKey,
     };
     final Uri uri = Uri.https(
         kBaseUrl, kSimilarRecipesEndpoint(tRecipeId), queryParameters);
@@ -197,7 +197,7 @@ void main() {
 
   group('Search Recipes', () {
     final queryParameters = <String, dynamic>{
-      'api_key': kApiKey,
+      'apiKey': kApiKey,
       'query': tQuery,
     };
     final Uri uri =
