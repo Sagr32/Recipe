@@ -11,7 +11,6 @@ class GetSimilarRecipes implements UseCase<List<Recipe>, IntParams> {
   /// constructor
   GetSimilarRecipes(this.recipeReposity);
   final RecipeRepository recipeReposity;
-
   @override
   Future<Either<Failure, List<Recipe>>> call(params) async {
     return await recipeReposity.getSimilarRecipes(recipeId: params.recipeId);
