@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:recipe/features/recipe/data/models/recipe_video_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/constants/endpoint.dart';
@@ -30,6 +31,11 @@ abstract class RecipeRemoteDataSource {
   /// Throws a [Exception] for errors .
 
   Future<RecipeModel> getRecipeInformation({required int? recipeId});
+
+  ///Calls the [baseUrl]/food/videos/search   endpoint
+  ///
+  ///Throws a [Exception] for errors .
+  Future<List<RecipeVideoModel>> getRecipeVideo({required String? query});
 }
 
 /// Reciepe remote data source implementaion
@@ -90,6 +96,39 @@ class RecipeRemoteDataSourceImpl implements RecipeRemoteDataSource {
     }
   }
 
+  @override
+  Future<List<RecipeVideoModel>> getRecipeVideo(
+      {required String? query}) async {
+    final Map<String, String> queryParameters = {
+      'apiKey': kApiKey,
+      'query': '$query',
+    };
+    final Uri uri = Uri.https(
+      kBaseUrl,
+      kRecipeVideoEndpoint,
+      queryParameters,
+    );
+
+    try {
+      final response = await client.get(uri);
+      if (response.statusCode == 200) {
+        final myList = (json.decode(response.body)['videos']);
+
+        final List<RecipeVideoModel> list = myList
+            .map<RecipeVideoModel>((data) => RecipeVideoModel.fromJson(data))
+            .toList();
+
+        return list;
+      } else {
+        throw ServerException(errorMessage: response.body);
+      }
+    } on Exception catch (error) {
+      throw ServerException(errorMessage: error.toString());
+    }
+  }
+
+  /// function that takes endpoint and call it
+  /// then return response as list of [RecipeModel]
   Future<List<RecipeModel>> _getRecipesFromUrl(
       {required String endPoint,
       required Map<String, dynamic>? queryParameters,

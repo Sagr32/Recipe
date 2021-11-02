@@ -12,3 +12,6 @@ const String kSearchRecipesEndpojnt = 'recipes/complexSearch';
 
 /// Random Recipes endpoint
 const String kRandomRecipesEndpoint = 'recipes/random';
+
+/// Recipe video endpoint
+const String kRecipeVideoEndpoint = 'food/videos/search';

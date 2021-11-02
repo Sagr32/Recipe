@@ -195,50 +195,105 @@ void main() {
     );
   });
 
-  group('Search Recipes', () {
-    final queryParameters = <String, dynamic>{
-      'apiKey': kApiKey,
-      'query': tQuery,
-    };
-    final Uri uri =
-        Uri.https(kBaseUrl, kSearchRecipesEndpojnt, queryParameters);
+  group(
+    'Search Recipes',
+    () {
+      final queryParameters = <String, dynamic>{
+        'apiKey': kApiKey,
+        'query': tQuery,
+      };
+      final Uri uri =
+          Uri.https(kBaseUrl, kSearchRecipesEndpojnt, queryParameters);
 
-    test(
-      'should perform a GET request on Uri ',
-      () async {
-        // arrange
-        setUpMockHttpClientSuccess200('search');
-        // act
-        dataSourceImpl.searchRecipes(query: tQuery);
+      test(
+        'should perform a GET request on Uri ',
+        () async {
+          // arrange
+          setUpMockHttpClientSuccess200('search');
+          // act
+          dataSourceImpl.searchRecipes(query: tQuery);
 
-        // assert
-        verify(
-          () => httpClient.get(uri),
-        );
-      },
-    );
+          // assert
+          verify(
+            () => httpClient.get(uri),
+          );
+        },
+      );
 
-    test(
-      'should retrun list of Recipe when response code is 200',
-      () async {
-        // arrange
-        setUpMockHttpClientSuccess200('search');
-        // act
-        final result = await dataSourceImpl.searchRecipes(query: tQuery);
-        // assert
-        expect(result, tRecipeModelList);
-      },
-    );
-    test(
-      'should return Server Exception when response code 404 (failed)',
-      () async {
-        // arrange
-        setUpMockHttpClientFailure404();
-        // act
-        final call = dataSourceImpl.searchRecipes(query: tQuery);
-        // assert
-        expect(() => call, throwsA(const TypeMatcher<ServerException>()));
-      },
-    );
-  });
+      test(
+        'should retrun list of Recipe when response code is 200',
+        () async {
+          // arrange
+          setUpMockHttpClientSuccess200('search');
+          // act
+          final result = await dataSourceImpl.searchRecipes(query: tQuery);
+          // assert
+          expect(result, tRecipeModelList);
+        },
+      );
+      test(
+        'should return Server Exception when response code 404 (failed)',
+        () async {
+          // arrange
+          setUpMockHttpClientFailure404();
+          // act
+          final call = dataSourceImpl.searchRecipes(query: tQuery);
+          // assert
+          expect(() => call, throwsA(const TypeMatcher<ServerException>()));
+        },
+      );
+    },
+  );
+  group(
+    'Get Recipe Video',
+    () {
+      final queryParameters = <String, dynamic>{
+        'apiKey': kApiKey,
+        'query': tQuery,
+      };
+      final Uri uri = Uri.https(
+        kBaseUrl,
+        kRecipeVideoEndpoint,
+        queryParameters,
+      );
+
+      test(
+        'should perform a GET request on Uri ',
+        () async {
+          // arrange
+          setUpMockHttpClientSuccess200('search');
+          // act
+          dataSourceImpl.getRecipeVideo(query: tQuery);
+
+          // assert
+          verify(
+            () => httpClient.get(uri),
+          );
+        },
+      );
+
+      test(
+        'should retrun list of RecipeVideo when response code is 200',
+        () async {
+          // arrange
+          setUpMockHttpClientSuccess200('videos');
+          // act
+          final result = await dataSourceImpl.getRecipeVideo(query: tQuery);
+          // assert
+          expect(result, tRecipeVideoModelList);
+        },
+      );
+      test(
+        'should return Server Exception when response code 404 (failed)',
+        () async {
+          // arrange
+          setUpMockHttpClientFailure404();
+          // act
+          final call = dataSourceImpl.getRecipeVideo(query: tQuery);
+          // assert
+          expect(() => call, throwsA(const TypeMatcher<ServerException>()));
+        },
+      );
+    },
+  );
 }

@@ -2,10 +2,12 @@ import 'package:recipe/features/recipe/data/models/analyzed_instruction_model.da
 import 'package:recipe/features/recipe/data/models/extended_ingredient_model.dart';
 import 'package:recipe/features/recipe/data/models/recipe_model.dart';
 import 'package:recipe/features/recipe/data/models/recipe_step_model.dart';
+import 'package:recipe/features/recipe/data/models/recipe_video_model.dart';
 import 'package:recipe/features/recipe/domain/entities/analyzed_instruction.dart';
 import 'package:recipe/features/recipe/domain/entities/extended_ingredient.dart';
 import 'package:recipe/features/recipe/domain/entities/recipe.dart';
 import 'package:recipe/features/recipe/domain/entities/recipe_step.dart';
+import 'package:recipe/features/recipe/domain/entities/recipe_video.dart';
 
 const tRecipeId = 125135;
 const tQuery = 'Burger';
@@ -214,3 +216,37 @@ const tExtendedIngredientModel = ExtendedIngredientModel(
 const tStepModel = RecipeStepModel(
   recipeStep: "Cook pasta in a large pot of boiling water until al dente.",
 );
+
+const tRecipeVideoList = [
+  RecipeVideo(
+    length: 353,
+    title:
+        "Easy egg sandwich - quick and easy breakfast ideas - homemade breakfast egg recipes-healthy sandwich",
+    youTubeId: "RKMYYTz2jzg",
+    views: 1230,
+    thumbnail: "https://i.ytimg.com/vi/RKMYYTz2jzg/mqdefault.jpg",
+  ),
+  RecipeVideo(
+      title: "Cloud Eggs",
+      youTubeId: "h14GWP9rK44",
+      views: 367025,
+      thumbnail: "https://i.ytimg.com/vi/h14GWP9rK44/mqdefault.jpg",
+      length: 70),
+];
+
+const tRecipeVideoModelList = [
+  RecipeVideoModel(
+    length: 353,
+    title:
+        "Easy egg sandwich - quick and easy breakfast ideas - homemade breakfast egg recipes-healthy sandwich",
+    youTubeId: "RKMYYTz2jzg",
+    views: 1230,
+    thumbnail: "https://i.ytimg.com/vi/RKMYYTz2jzg/mqdefault.jpg",
+  ),
+  RecipeVideoModel(
+      title: "Cloud Eggs",
+      youTubeId: "h14GWP9rK44",
+      views: 367025,
+      thumbnail: "https://i.ytimg.com/vi/h14GWP9rK44/mqdefault.jpg",
+      length: 70),
+];

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:recipe/features/recipe/domain/entities/recipe_video.dart';
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/error/failure.dart';
@@ -49,6 +50,27 @@ class RecipeRepositoryImpl implements RecipeRepository {
       try {
         final Recipe remoteRecipes = await recipeRemoteDataSource
             .getRecipeInformation(recipeId: recipeId);
+
+        return Right(remoteRecipes);
+      } on ServerException catch (error) {
+        return Left(
+          ServerFailure(errorMessage: error.errorMessage.toString()),
+        );
+      }
+    } else {
+      return Left(
+        ConnectionFailure(),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<RecipeVideo>>> getRecipesVideo(
+      {required String? query}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final List<RecipeVideo> remoteRecipes =
+            await recipeRemoteDataSource.getRecipeVideo(query: query);
 
         return Right(remoteRecipes);
       } on ServerException catch (error) {

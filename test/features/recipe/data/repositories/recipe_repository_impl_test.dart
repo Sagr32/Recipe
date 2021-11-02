@@ -252,4 +252,54 @@ void main() {
       );
     });
   });
+  group('get Recipe Video', () {
+    runTestOnline(
+      () {
+        test(
+          '''should return Recipe Video model
+           when calling datasource is successful''',
+          () async {
+            // arrange
+            when(() => mockRemoteDataSource.getRecipeVideo(query: tQuery))
+                .thenAnswer((invocation) async => tRecipeVideoModelList);
+            // act
+            final result = await repositoryImpl.getRecipesVideo(query: tQuery);
+            // assert
+            expect(result, Right(tRecipeVideoModelList));
+          },
+        );
+        test(
+          'should return server failure when calling datasource failed',
+          () async {
+            // arrange
+            when(() => mockRemoteDataSource.getRecipeVideo(query: tQuery))
+                .thenThrow(ServerException(errorMessage: kErrorMessage));
+            // act
+            final result = await repositoryImpl.getRecipesVideo(query: tQuery);
+            // assert
+            expect(
+              result,
+              Left(
+                ServerFailure(errorMessage: kErrorMessage),
+              ),
+            );
+          },
+        );
+      },
+    );
+    runTestOffline(() {
+      test(
+        'should return connection failure when calling datasource failed',
+        () async {
+          // arrange
+          when(() => mockRemoteDataSource.getRecipeVideo(query: tQuery))
+              .thenThrow(ServerException(errorMessage: kNoConnectionError));
+          // act
+          final result = await repositoryImpl.getRecipesVideo(query: tQuery);
+          // assert
+          expect(result, Left(ConnectionFailure()));
+        },
+      );
+    });
+  });
 }
