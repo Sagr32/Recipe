@@ -1,18 +1,51 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:recipe/features/recipe/presentation/widgets/recipe_video_widget.dart';
+import '../../../../core/constants/constants.dart';
 
-import 'package:recipe/core/util/size_config.dart';
-import 'package:recipe/features/recipe/presentation/widgets/category_card.dart';
-import 'package:recipe/features/recipe/presentation/widgets/recipe_card.dart';
+import '../../../../core/util/size_config.dart';
+import '../bloc/random_recipes/random_recipes_bloc.dart';
+import '../bloc/recipe_video/recipe_video_bloc.dart';
+import '../widgets/cached_image_widget.dart';
+import '../widgets/category_card.dart';
+import '../widgets/loading_widget.dart';
+import '../widgets/random_recipes_widget.dart';
+import '../widgets/recipe_card.dart';
+import '../widgets/video_card.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatelessWidget {
+/// Home screen that holds list of [CategoryDietsCard]
+/// list of [VideoCard] and list of [RecipeCard]
+class HomeScreen extends StatefulWidget {
+  /// Constructor
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<RecipeVideoBloc>().add(GetRecipeVideoEvent(query: 'egg'));
+    context.read<RandomRecipesBloc>().add(GetRecipesForRandomEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'RECIPE',
+          style: GoogleFonts.mcLaren(
+            color: kMainColor,
+          ),
+        ),
         elevation: 0,
         leading: const Icon(
           Icons.menu,
@@ -24,26 +57,24 @@ class HomeScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView(
-            children: [
-              Text(
-                "Hello , Chef !",
-                style: Theme.of(context).textTheme.headline4,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: const [
-                  CategoryCard(
-                    iconPath: "ketogenic",
-                  ),
-                  CategoryCard(
-                    iconPath: 'vegan',
-                  ),
-                  CategoryCard(
-                    iconPath: 'vegetarian',
-                  ),
-                ],
+            children: <Widget>[
+              SizedBox(
+                height: SizeConfig.blockSizeVertical * 7,
+                child: ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  children: const <Widget>[
+                    CategoryDietsCard(
+                      iconPath: "ketogenic",
+                    ),
+                    CategoryDietsCard(
+                      iconPath: 'vegan',
+                    ),
+                    CategoryDietsCard(
+                      iconPath: 'vegetarian',
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -56,9 +87,12 @@ class HomeScreen extends StatelessWidget {
                     margin: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const <Widget>[
-                        Text('Search For Recipes'),
-                        Icon(
+                      children: <Widget>[
+                        Text(
+                          'Search For Recipes',
+                          style: GoogleFonts.mcLaren(),
+                        ),
+                        const Icon(
                           Icons.search_outlined,
                           color: Colors.black,
                         ),
@@ -67,18 +101,31 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: SizeConfig.blockSizeVertical * 30,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  primary: false,
-                  itemCount: 5,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (ctx, index) {
-                    return const RecipeCard();
-                  },
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Food videos for you',
+                style: GoogleFonts.mcLaren(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              const RecipesVideosWidget(),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Random Recipes',
+                style: GoogleFonts.mcLaren(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+              const RandomRecipesWidget(),
             ],
           ),
         ),

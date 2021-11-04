@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:recipe/core/error/failure.dart';
-import 'package:recipe/core/usecase/usecase.dart';
-import 'package:recipe/features/recipe/domain/entities/recipe_video.dart';
-import 'package:recipe/features/recipe/domain/repositories/recipe_repository.dart';
+import '../../../../core/error/failure.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../entities/recipe_video.dart';
+import '../repositories/recipe_repository.dart';
 
 /// get video for recipe using query
 class GetRecipeVideo implements UseCase<List<RecipeVideo>, StringParams> {

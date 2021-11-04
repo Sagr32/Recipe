@@ -109,7 +109,10 @@ void main() {
   );
 
   group('Get Random Recipes', () {
-    final Map<String, String> queryParameters = {'apiKey': kApiKey};
+    final Map<String, String> queryParameters = {
+      'apiKey': kApiKey,
+      'number': '10',
+    };
     final Uri uri =
         Uri.https(kBaseUrl, kRandomRecipesEndpoint, queryParameters);
     test(

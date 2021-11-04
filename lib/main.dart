@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'features/recipe/presentation/bloc/recipe_info/recipe_info_bloc.dart';
+import 'features/recipe/presentation/bloc/random_recipes/random_recipes_bloc.dart';
+import 'features/recipe/presentation/bloc/recipe_video/recipe_video_bloc.dart';
+import 'features/recipe/presentation/bloc/search_recipes/search_recipes_bloc.dart';
+import 'features/recipe/presentation/bloc/similar_recipes.dart/similar_recipes_bloc.dart';
+import 'injection_container.dart' as di;
 import 'features/recipe/presentation/pages/home_screen.dart';
 
 void main() {
+  di.init();
   runApp(const MyApp());
 }
 
@@ -11,69 +19,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "RECIPE",
-      home: HomeScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => di.sl<RecipeInfoBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<RandomRecipesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<SimilarRecipesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<SearchRecipesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<RecipeVideoBloc>(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "RECIPE",
+        home: HomeScreen(),
+      ),
     );
   }
 }
-
-
-
-// class RecipeInfoWidget extends StatefulWidget {
-//   const RecipeInfoWidget({Key? key}) : super(key: key);
-
-//   @override
-//   _RecipeInfoWidgetState createState() => _RecipeInfoWidgetState();
-// }
-
-// class _RecipeInfoWidgetState extends State<RecipeInfoWidget> {
-//   @override
-//   void initState() {
-//     context.read<RecipeInfoBloc>().add(GetRecipeInfoEvent(recipeId: 715538));
-//     super.initState();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SafeArea(
-//         child: Center(
-//           child: ListView(
-//             children: [
-//               BlocBuilder<RecipeInfoBloc, RecipeInfoState>(
-//                 builder: (context, state) {
-//                   if (state is RecipeInfoInitial) {
-//                     return Text(
-//                       'Start searching!',
-//                     );
-//                   } else if (state is RecipeInfoLoading) {
-//                     return Text('Loading');
-//                   } else if (state is RecipeInfoLoaded) {
-//                     return Text(parseHtml(state.recipe.summary));
-//                   } else if (state is RecipeInfoError) {
-//                     return Text(state.errorMessage);
-//                   }
-//                   return Container();
-//                 },
-//               ),
-//               GestureDetector(
-//                   onTap: () {
-//                     context
-//                         .read<RecipeInfoBloc>()
-//                         .add(GetRecipeInfoEvent(recipeId: 715538));
-//                   },
-//                   child: Padding(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: Text(
-//                       "Big big big biiiiiig text ",
-//                     ),
-//                   )),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

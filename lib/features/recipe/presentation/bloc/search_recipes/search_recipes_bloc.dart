@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:recipe/core/error/failure.dart';
-import 'package:recipe/core/usecase/usecase.dart';
-import 'package:recipe/features/recipe/domain/entities/recipe.dart';
-import 'package:recipe/features/recipe/domain/usecases/search_recipes.dart';
+import '../../../../../core/error/failure.dart';
+import '../../../../../core/usecase/usecase.dart';
+import '../../../domain/entities/recipe.dart';
+import '../../../domain/usecases/search_recipes.dart';
 
 part 'search_recipes_event.dart';
 part 'search_recipes_state.dart';

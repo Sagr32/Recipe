@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:recipe/features/recipe/data/models/recipe_video_model.dart';
+import '../models/recipe_video_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/constants/endpoint.dart';
@@ -53,6 +53,7 @@ class RecipeRemoteDataSourceImpl implements RecipeRemoteDataSource {
       jsonKey: 'recipes',
       queryParameters: <String, dynamic>{
         'apiKey': kApiKey,
+        'number': '10',
       },
     );
   }

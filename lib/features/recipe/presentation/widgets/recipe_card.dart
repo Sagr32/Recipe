@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:recipe/core/constants/constants.dart';
-import 'package:recipe/core/util/size_config.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/util/size_config.dart';
+import '../../domain/entities/recipe.dart';
+
+/// widget that display Recipe image , title and summary
+/// in a beautiful card
 
 class RecipeCard extends StatelessWidget {
-  const RecipeCard({Key? key}) : super(key: key);
+  /// constructor
+  const RecipeCard({required this.recipe, Key? key}) : super(key: key);
+
+  /// [Recipe] holds recipe information
+  final Recipe recipe;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +32,12 @@ class RecipeCard extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Hero(
-                    tag: "",
+                    tag: recipe.id.toString(),
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                            'https://spoonacular.com/recipeImages/634545-556x370.jpg',
+                            recipe.image ?? kAppLogo,
                           ),
                           fit: BoxFit.contain,
                         ),
@@ -36,40 +45,31 @@ class RecipeCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 8,
+                const SizedBox(
+                  height: 10,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    'Barbecued Shrimp & Grits',
+                    recipe.title ?? 'N/A',
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: GoogleFonts.mcLaren(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    'Barbecued Shrimp & Grits might be just the morn meal you are searching for.',
+                    recipe.summary ?? 'N/A',
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: GoogleFonts.mcLaren(
                       fontSize: 16,
                       color: Colors.grey[400],
                     ),
                   ),
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     buildCalories(recipe.calories.toString() + " Kcal"),
-                //     Icon(
-                //       Icons.favorite_border,
-                //     )
-                //   ],
-                // ),
               ],
             ),
           ),

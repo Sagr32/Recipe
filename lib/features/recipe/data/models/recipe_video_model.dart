@@ -1,4 +1,4 @@
-import 'package:recipe/features/recipe/domain/entities/recipe_video.dart';
+import '../../domain/entities/recipe_video.dart';
 
 /// Recipe Video model that extends Recipe Video Entity
 class RecipeVideoModel extends RecipeVideo {

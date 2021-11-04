@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:recipe/features/recipe/domain/entities/recipe_video.dart';
+import '../../domain/entities/recipe_video.dart';
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/error/failure.dart';

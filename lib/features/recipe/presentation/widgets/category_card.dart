@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class CategoryCard extends StatelessWidget {
-  final String iconPath;
-  const CategoryCard({
+/// Widget that display card holds category diet name and image
+/// like [vegan , vegetarian]
+class CategoryDietsCard extends StatelessWidget {
+  /// constructor
+  const CategoryDietsCard({
     Key? key,
     required this.iconPath,
   }) : super(key: key);
+
+  /// icon path in assets folder
+  final String iconPath;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -25,9 +31,9 @@ class CategoryCard extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            const Text(
-              'ketogenic',
-              style: TextStyle(
+            Text(
+              iconPath,
+              style: GoogleFonts.mcLaren(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
