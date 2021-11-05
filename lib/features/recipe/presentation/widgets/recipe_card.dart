@@ -9,17 +9,21 @@ import '../../domain/entities/recipe.dart';
 
 class RecipeCard extends StatelessWidget {
   /// constructor
-  const RecipeCard({required this.recipe, Key? key}) : super(key: key);
+  const RecipeCard({required this.recipe, required this.width, Key? key})
+      : super(key: key);
 
   /// [Recipe] holds recipe information
   final Recipe recipe;
+
+  /// widget width
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
       child: SizedBox(
-        width: SizeConfig.blockSizeHorizontal * 60,
+        width: SizeConfig.blockSizeHorizontal * width,
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -28,7 +32,7 @@ class RecipeCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Expanded(
                   child: Hero(
@@ -39,7 +43,7 @@ class RecipeCard extends StatelessWidget {
                           image: NetworkImage(
                             recipe.image ?? kAppLogo,
                           ),
-                          fit: BoxFit.contain,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -48,28 +52,28 @@ class RecipeCard extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Text(
-                    recipe.title ?? 'N/A',
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.mcLaren(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                Text(
+                  recipe.title ?? 'N/A',
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: GoogleFonts.mcLaren(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Text(
-                    recipe.summary ?? 'N/A',
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.mcLaren(
-                      fontSize: 16,
-                      color: Colors.grey[400],
-                    ),
-                  ),
-                ),
+                recipe.summary!.isEmpty
+                    ? Container()
+                    : Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          recipe.summary ?? 'N/A',
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.mcLaren(
+                            fontSize: 16,
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                      )
               ],
             ),
           ),

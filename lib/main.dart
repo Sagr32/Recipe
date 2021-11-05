@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:recipe/features/recipe/presentation/pages/search_screen.dart';
 import 'features/recipe/presentation/bloc/recipe_info/recipe_info_bloc.dart';
 import 'features/recipe/presentation/bloc/random_recipes/random_recipes_bloc.dart';
 import 'features/recipe/presentation/bloc/recipe_video/recipe_video_bloc.dart';
@@ -22,25 +23,29 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => di.sl<RecipeInfoBloc>(),
+          create: (BuildContext context) => di.sl<RecipeInfoBloc>(),
         ),
         BlocProvider(
-          create: (context) => di.sl<RandomRecipesBloc>(),
+          create: (BuildContext context) => di.sl<RandomRecipesBloc>(),
         ),
         BlocProvider(
-          create: (context) => di.sl<SimilarRecipesBloc>(),
+          create: (BuildContext context) => di.sl<SimilarRecipesBloc>(),
         ),
         BlocProvider(
-          create: (context) => di.sl<SearchRecipesBloc>(),
+          create: (BuildContext context) => di.sl<SearchRecipesBloc>(),
         ),
         BlocProvider(
-          create: (context) => di.sl<RecipeVideoBloc>(),
+          create: (BuildContext context) => di.sl<RecipeVideoBloc>(),
         ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "RECIPE",
-        home: HomeScreen(),
+        home: const HomeScreen(),
+        routes: {
+          SearchScreen.routeName: (BuildContext context) =>
+              const SearchScreen(),
+        },
       ),
     );
   }

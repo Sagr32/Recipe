@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import '../models/recipe_video_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/constants/endpoint.dart';
 import '../../../../core/error/exception.dart';
 import '../models/recipe_model.dart';
+import '../models/recipe_video_model.dart';
 
 /// Remote data source abstract class
 abstract class RecipeRemoteDataSource {

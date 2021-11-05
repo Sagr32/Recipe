@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:recipe/features/recipe/presentation/widgets/error_display.dart';
 import '../../../../core/util/size_config.dart';
 import '../bloc/random_recipes/random_recipes_bloc.dart';
 import 'loading_widget.dart';
@@ -35,12 +36,13 @@ class RandomRecipesWidget extends StatelessWidget {
               itemBuilder: (BuildContext ctx, int index) {
                 return RecipeCard(
                   recipe: state.recipes[index],
+                  width: 60,
                 );
               },
             ),
           );
         } else if (state is RandomRecipesError) {
-          return Text(state.errorMessage);
+          return ErrorDisplay(errorMessage: state.errorMessage, height: 30);
         }
         return Container();
       },

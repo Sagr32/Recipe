@@ -49,31 +49,35 @@ class RecipeModel extends Recipe {
 
   /// Factory constructor From json
   factory RecipeModel.fromJson(Map<String, dynamic> json) => RecipeModel(
-        image: json['image'] as String?,
-        vegetarian: json['vegetarian'],
-        vegan: json['vegan'],
-        glutenFree: json['glutenFree'],
-        dairyFree: json['dairyFree'],
-        veryHealthy: json['veryHealthy'],
-        cheap: json['cheap'],
-        veryPopular: json['veryPopular'],
+        image: json['image'] ?? '',
+        vegetarian: json['vegetarian'] ?? false,
+        vegan: json['vegan'] ?? false,
+        glutenFree: json['glutenFree'] ?? false,
+        dairyFree: json['dairyFree'] ?? false,
+        veryHealthy: json['veryHealthy'] ?? false,
+        cheap: json['cheap'] ?? false,
+        veryPopular: json['veryPopular'] ?? false,
         id: json['id'],
         title: json['title'],
-        readyInMinutes: json['readyInMinutes'],
-        servings: json['servings'],
-        summary: json['summary'],
-        cuisines: json['cuisines'].cast<String>(),
-        diets: json['diets'].cast<String>(),
-        dishTypes: json['dishTypes'].cast<String>(),
-        instructions: json['instructions'],
+        readyInMinutes: json['readyInMinutes'] ?? 00,
+        servings: json['servings'] ?? 0,
+        summary: json['summary'] ?? '',
+        cuisines:
+            json['cuisines'] != null ? json['cuisines'].cast<String>() : [],
+        diets: json['diets'] != null ? json['diets'].cast<String>() : [],
+        dishTypes:
+            json['dishTypes'] != null ? json['dishTypes'].cast<String>() : [],
+        instructions: json['instructions'] ?? '',
         extendedIngredients: (json['extendedIngredients'] as List<dynamic>?)
-            ?.map((e) =>
-                ExtendedIngredientModel.fromJson(e as Map<String, dynamic>))
-            .toList(),
+                ?.map((e) =>
+                    ExtendedIngredientModel.fromJson(e as Map<String, dynamic>))
+                .toList() ??
+            [],
         analyzedInstructions: (json['analyzedInstructions'] as List<dynamic>?)
-            ?.map((e) =>
-                AnalyzedInstructionModel.fromJson(e as Map<String, dynamic>))
-            .toList(),
+                ?.map((e) => AnalyzedInstructionModel.fromJson(
+                    e as Map<String, dynamic>))
+                .toList() ??
+            [],
       );
 
   /// to json

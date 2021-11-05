@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import '../entities/recipe_video.dart';
 
 import '../../../../core/error/failure.dart';
 import '../entities/recipe.dart';
+import '../entities/recipe_video.dart';
 
 /// Recipe repository or contract
 abstract class RecipeRepository {

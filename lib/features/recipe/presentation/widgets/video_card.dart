@@ -10,7 +10,10 @@ import 'cached_image_widget.dart';
 /// and open link when clicking on play button
 class VideoCard extends StatelessWidget {
   /// Constructor
-  const VideoCard({required this.video, Key? key}) : super(key: key);
+  const VideoCard({
+    required this.video,
+    Key? key,
+  }) : super(key: key);
 
   /// Recipe video
   final RecipeVideo video;
@@ -18,7 +21,9 @@ class VideoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {},
+      onTap: () async {
+        _launchUrl(kYoutubeLink(video.youTubeId));
+      },
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Stack(
@@ -57,23 +62,18 @@ class VideoCard extends StatelessWidget {
                     10,
                   ),
                 ),
-                width: SizeConfig.blockSizeHorizontal * 70,
+                width: SizeConfig.blockSizeHorizontal * 90,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        video.title ?? 'No title',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.mcLaren(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                        ),
-                      ),
-                    ],
+                  child: Text(
+                    video.title ?? 'No title',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.mcLaren(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
                   ),
                 ),
               ),
@@ -82,5 +82,15 @@ class VideoCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+Future<void> _launchUrl(String url) async {
+  if (await canLaunch(url)) {
+    await launch(
+      url,
+    );
+  } else {
+    throw 'Could not launch $url';
   }
 }

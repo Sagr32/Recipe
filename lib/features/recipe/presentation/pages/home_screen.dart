@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:recipe/features/recipe/presentation/pages/search_screen.dart';
 import '../widgets/recipe_video_widget.dart';
 import '../../../../core/constants/constants.dart';
 
@@ -22,6 +23,8 @@ class HomeScreen extends StatefulWidget {
   /// Constructor
   const HomeScreen({Key? key}) : super(key: key);
 
+  /// route name
+  static const String routeName = '/home-screen';
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -58,28 +61,13 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(8.0),
           child: ListView(
             children: <Widget>[
-              SizedBox(
-                height: SizeConfig.blockSizeVertical * 7,
-                child: ListView(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  children: const <Widget>[
-                    CategoryDietsCard(
-                      iconPath: "ketogenic",
-                    ),
-                    CategoryDietsCard(
-                      iconPath: 'vegan',
-                    ),
-                    CategoryDietsCard(
-                      iconPath: 'vegetarian',
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
               GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    SearchScreen.routeName,
+                  );
+                },
                 child: Card(
                   elevation: 5,
                   child: Container(

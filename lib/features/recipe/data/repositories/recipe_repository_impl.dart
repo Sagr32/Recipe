@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import '../../domain/entities/recipe_video.dart';
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/entities/recipe.dart';
+import '../../domain/entities/recipe_video.dart';
 import '../../domain/repositories/recipe_repository.dart';
 import '../datasources/recipe_remote_datasource.dart';
 

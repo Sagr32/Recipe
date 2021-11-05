@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import '../../../../core/constants/constants.dart';
-import '../../../../core/util/size_config.dart';
-
-import 'cached_image_placeholder.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/constants/constants.dart';
+import 'cached_image_placeholder.dart';
 
 /// Widget that use [Cached Image Network]
 /// to show images in it
@@ -37,7 +36,7 @@ class CachedImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: imageUrl == 'None' ? kAppLogo : imageUrl,
+      imageUrl: imageUrl,
       imageBuilder: (BuildContext context, ImageProvider imageProvider) =>
           ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
