@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:recipe/core/util/random_query.dart';
-import 'package:recipe/features/recipe/presentation/pages/search_screen.dart';
-import 'package:recipe/features/recipe/presentation/widgets/custom_drawer.dart';
+import '../../../../core/util/random_query.dart';
+import 'search_screen.dart';
+import '../widgets/custom_drawer.dart';
 import '../widgets/recipe_video_widget.dart';
 import '../../../../core/constants/constants.dart';
 

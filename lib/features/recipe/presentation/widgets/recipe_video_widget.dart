@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recipe/features/recipe/presentation/widgets/error_display.dart';
+import 'error_display.dart';
 import '../../../../core/util/size_config.dart';
 import '../bloc/recipe_video/recipe_video_bloc.dart';
 import 'loading_widget.dart';

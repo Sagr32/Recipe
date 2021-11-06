@@ -1,4 +1,4 @@
-import 'package:recipe/core/constants/constants.dart';
+import '../../../../core/constants/constants.dart';
 
 import '../../domain/entities/recipe.dart';
 import 'analyzed_instruction_model.dart';

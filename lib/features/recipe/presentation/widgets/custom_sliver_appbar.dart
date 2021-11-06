@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:recipe/core/constants/constants.dart';
-import 'package:recipe/core/util/size_config.dart';
-import 'package:recipe/features/recipe/domain/entities/recipe.dart';
-import 'package:recipe/features/recipe/presentation/widgets/cached_image_widget.dart';
-import 'package:recipe/features/recipe/presentation/widgets/details_card.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/util/size_config.dart';
+import '../../domain/entities/recipe.dart';
+import 'cached_image_widget.dart';
+import 'details_card.dart';
 
 /// Custom SliverAppBar that exsits in details screen
 /// and contains recipe image and [DetailsCard]

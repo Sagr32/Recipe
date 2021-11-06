@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recipe/core/util/size_config.dart';
-import 'package:recipe/features/recipe/presentation/bloc/similar_recipes.dart/similar_recipes_bloc.dart';
-import 'package:recipe/features/recipe/presentation/widgets/error_display.dart';
-import 'package:recipe/features/recipe/presentation/widgets/loading_widget.dart';
-import 'package:recipe/features/recipe/presentation/widgets/recipe_card.dart';
+import '../../../../core/util/size_config.dart';
+import '../bloc/similar_recipes.dart/similar_recipes_bloc.dart';
+import 'error_display.dart';
+import 'loading_widget.dart';
+import 'recipe_card.dart';
 
 /// widget that represent similar recipes
 /// and shown as horizontal listview

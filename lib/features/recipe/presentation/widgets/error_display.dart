@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:recipe/core/util/size_config.dart';
+import '../../../../core/util/size_config.dart';
 
 /// widget that display error message
 class ErrorDisplay extends StatelessWidget {

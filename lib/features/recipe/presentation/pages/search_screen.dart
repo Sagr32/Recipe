@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recipe/core/constants/constants.dart';
-import 'package:recipe/core/util/size_config.dart';
-import 'package:recipe/features/recipe/presentation/bloc/search_recipes/search_recipes_bloc.dart';
-import 'package:recipe/features/recipe/presentation/widgets/error_display.dart';
-import 'package:recipe/features/recipe/presentation/widgets/loading_widget.dart';
-import 'package:recipe/features/recipe/presentation/widgets/recipe_card.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/util/size_config.dart';
+import '../bloc/search_recipes/search_recipes_bloc.dart';
+import '../widgets/error_display.dart';
+import '../widgets/loading_widget.dart';
+import '../widgets/recipe_card.dart';
 
 /// Search Screen that hold search result
 /// and display it in grid list

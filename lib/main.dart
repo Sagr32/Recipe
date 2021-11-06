@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:recipe/features/recipe/presentation/pages/details_screen.dart';
-import 'package:recipe/features/recipe/presentation/pages/search_screen.dart';
+import 'features/recipe/presentation/pages/details_screen.dart';
+import 'features/recipe/presentation/pages/search_screen.dart';
 import 'features/recipe/presentation/bloc/recipe_info/recipe_info_bloc.dart';
 import 'features/recipe/presentation/bloc/random_recipes/random_recipes_bloc.dart';
 import 'features/recipe/presentation/bloc/recipe_video/recipe_video_bloc.dart';
@@ -42,8 +42,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "RECIPE",
-        home: const HomeScreen(),
         routes: {
+          '/': (BuildContext context) => const HomeScreen(),
           SearchScreen.routeName: (BuildContext context) =>
               const SearchScreen(),
           DetailsScreen.routeName: (BuildContext context) =>
