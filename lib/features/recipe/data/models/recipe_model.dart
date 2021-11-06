@@ -1,3 +1,5 @@
+import 'package:recipe/core/constants/constants.dart';
+
 import '../../domain/entities/recipe.dart';
 import 'analyzed_instruction_model.dart';
 import 'extended_ingredient_model.dart';
@@ -49,7 +51,7 @@ class RecipeModel extends Recipe {
 
   /// Factory constructor From json
   factory RecipeModel.fromJson(Map<String, dynamic> json) => RecipeModel(
-        image: json['image'] ?? '',
+        image: json['image'] ?? kAppLogo,
         vegetarian: json['vegetarian'] ?? false,
         vegan: json['vegan'] ?? false,
         glutenFree: json['glutenFree'] ?? false,

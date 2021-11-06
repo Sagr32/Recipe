@@ -17,3 +17,13 @@ const Color kMainColor = Color(0xFF658361);
 
 /// youtube link from id
 String kYoutubeLink(String? id) => 'https://www.youtube.com/watch?v=$id';
+
+/// project link on Github
+const String kGithubLink = 'https://github.com/Sagr32/Recipe';
+
+/// Linkedin link
+const String kLinkedinLink = 'https://www.linkedin.com/in/mohamed-sagr/';
+
+/// app link on google play
+const String kAppLink =
+    'https://play.google.com/store/apps/details?id=com.sagrkai.recipe';

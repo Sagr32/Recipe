@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:recipe/features/recipe/presentation/pages/details_screen.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/util/size_config.dart';
 import '../../domain/entities/recipe.dart';
@@ -21,7 +22,13 @@ class RecipeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          DetailsScreen.routeName,
+          arguments: recipe.id,
+        );
+      },
       child: SizedBox(
         width: SizeConfig.blockSizeHorizontal * width,
         child: Card(

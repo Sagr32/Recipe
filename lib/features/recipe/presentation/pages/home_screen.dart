@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:recipe/core/util/random_query.dart';
 import 'package:recipe/features/recipe/presentation/pages/search_screen.dart';
+import 'package:recipe/features/recipe/presentation/widgets/custom_drawer.dart';
 import '../widgets/recipe_video_widget.dart';
 import '../../../../core/constants/constants.dart';
 
@@ -30,10 +32,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
-    context.read<RecipeVideoBloc>().add(GetRecipeVideoEvent(query: 'egg'));
+    context
+        .read<RecipeVideoBloc>()
+        .add(GetRecipeVideoEvent(query: randomQuery));
     context.read<RandomRecipesBloc>().add(GetRecipesForRandomEvent());
   }
 
@@ -41,6 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: const CustomDrawer(),
       appBar: AppBar(
         centerTitle: true,
         title: Text(
@@ -50,71 +58,84 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         elevation: 0,
-        leading: const Icon(
-          Icons.menu,
-          color: Colors.black,
+        leading: IconButton(
+          onPressed: () {
+            _scaffoldKey.currentState!.openDrawer();
+          },
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.black,
+          ),
         ),
         backgroundColor: Colors.white,
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(
-            children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    SearchScreen.routeName,
-                  );
-                },
-                child: Card(
-                  elevation: 5,
-                  child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    margin: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          'Search For Recipes',
-                          style: GoogleFonts.mcLaren(),
-                        ),
-                        const Icon(
-                          Icons.search_outlined,
-                          color: Colors.black,
-                        ),
-                      ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          context
+              .read<RecipeVideoBloc>()
+              .add(GetRecipeVideoEvent(query: randomQuery));
+          context.read<RandomRecipesBloc>().add(GetRecipesForRandomEvent());
+        },
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(
+              children: <Widget>[
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      SearchScreen.routeName,
+                    );
+                  },
+                  child: Card(
+                    elevation: 5,
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Search For Recipes',
+                            style: GoogleFonts.mcLaren(),
+                          ),
+                          const Icon(
+                            Icons.search_outlined,
+                            color: Colors.black,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                'Food videos for you',
-                style: GoogleFonts.mcLaren(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                const SizedBox(
+                  height: 10,
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const RecipesVideosWidget(),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                'Random Recipes',
-                style: GoogleFonts.mcLaren(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                Text(
+                  'Food videos for you',
+                  style: GoogleFonts.mcLaren(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-              const RandomRecipesWidget(),
-            ],
+                const SizedBox(
+                  height: 10,
+                ),
+                const RecipesVideosWidget(),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Random Recipes',
+                  style: GoogleFonts.mcLaren(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                const RandomRecipesWidget(),
+              ],
+            ),
           ),
         ),
       ),

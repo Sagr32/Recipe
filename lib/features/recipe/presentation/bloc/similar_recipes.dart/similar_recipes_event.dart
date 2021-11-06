@@ -8,7 +8,7 @@ abstract class SimilarRecipesEvent extends Equatable {
 }
 
 class GetSimilarRecipesEvent extends SimilarRecipesEvent {
-  final int recipeId;
+  final int? recipeId;
 
   const GetSimilarRecipesEvent({required this.recipeId});
 
