@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../pages/details_screen.dart';
 import 'error_display.dart';
 import '../../../../core/util/size_config.dart';
 import '../bloc/random_recipes/random_recipes_bloc.dart';
@@ -37,6 +38,13 @@ class RandomRecipesWidget extends StatelessWidget {
                 return RecipeCard(
                   recipe: state.recipes[index],
                   width: 60,
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      DetailsScreen.routeName,
+                      arguments: state.recipes[index].id,
+                    );
+                  },
                 );
               },
             ),

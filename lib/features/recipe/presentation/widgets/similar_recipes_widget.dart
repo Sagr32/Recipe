@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/recipe_info/recipe_info_bloc.dart';
 import '../../../../core/util/size_config.dart';
 import '../bloc/similar_recipes.dart/similar_recipes_bloc.dart';
 import 'error_display.dart';
@@ -40,7 +41,17 @@ class _SimilarRecipesWidgetState extends State<SimilarRecipesWidget> {
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
-                return RecipeCard(recipe: state.recipes[index], width: 40);
+                return RecipeCard(
+                  recipe: state.recipes[index],
+                  width: 40,
+                  onTap: () {
+                    context.read<RecipeInfoBloc>().add(
+                          GetRecipeInfoEvent(
+                            recipeId: state.recipes[index].id,
+                          ),
+                        );
+                  },
+                );
               },
             ),
           );

@@ -10,7 +10,11 @@ import '../../domain/entities/recipe.dart';
 
 class RecipeCard extends StatelessWidget {
   /// constructor
-  const RecipeCard({required this.recipe, required this.width, Key? key})
+  const RecipeCard(
+      {required this.recipe,
+      required this.width,
+      required this.onTap,
+      Key? key})
       : super(key: key);
 
   /// [Recipe] holds recipe information
@@ -19,15 +23,13 @@ class RecipeCard extends StatelessWidget {
   /// widget width
   final double width;
 
+  /// on tap function
+  final Function onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          DetailsScreen.routeName,
-          arguments: recipe.id,
-        );
+        onTap();
       },
       child: SizedBox(
         width: SizeConfig.blockSizeHorizontal * width,

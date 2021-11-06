@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'details_screen.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/util/size_config.dart';
 import '../bloc/search_recipes/search_recipes_bloc.dart';
@@ -87,6 +88,13 @@ class _SearchScreenState extends State<SearchScreen> {
                 return RecipeCard(
                   recipe: state.recipes[index],
                   width: 50,
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      DetailsScreen.routeName,
+                      arguments: state.recipes[index].id,
+                    );
+                  },
                 );
               },
             );

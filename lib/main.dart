@@ -10,6 +10,7 @@ import 'features/recipe/presentation/bloc/search_recipes/search_recipes_bloc.dar
 import 'features/recipe/presentation/bloc/similar_recipes.dart/similar_recipes_bloc.dart';
 import 'injection_container.dart' as di;
 import 'features/recipe/presentation/pages/home_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   di.init();
